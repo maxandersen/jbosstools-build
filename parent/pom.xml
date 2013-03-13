@@ -44,6 +44,11 @@
 		<skipTestsWithPrivateRequirements>${skipPrivateRequirements}</skipTestsWithPrivateRequirements>
 		<!-- Tests Timeout in seconds -->
 		<surefire.timeout>2400</surefire.timeout>
+
+		<!-- Wether to use uiharness or not for test runs -->
+		<surefire.useUIHarness>true</surefire.useUIHarness>
+		<surefire.useUIThread>true</surefire.useUIThread>
+
 		<!-- Where to put jacoco coverage report, basically in the target/ folder at the top-level for each component -->
 		<!-- For multi-modules "chunks", set it to '../../../target/jacoco.exec' in their root pom -->
 		<jacoco.destFile>../../target/jacoco.exec</jacoco.destFile>
@@ -217,8 +222,8 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tychoVersion}</version>
 				<configuration>
-					<useUIHarness>true</useUIHarness>
-					<useUIThread>true</useUIThread>
+					<useUIHarness>${surefire.useUIHarness}</useUIHarness>
+					<useUIThread>${surefire.useUIThread}</useUIThread>
 					<!-- THE FOLLOWING LINE MUST NOT BE BROKEN BY AUTOFORMATTING -->
 					<!-- tycho.testArgLine repeated to keep jacoco configuration for jacoco-maven-plugin -->
 					<argLine>${tycho.testArgLine} ${memoryOptions1} ${memoryOptions2} ${applejdkProperties} ${platformSystemProperties} ${systemProperties} -Dusage_reporting_enabled=false -Dorg.jboss.tools.tests.skipPrivateRequirements=${skipPrivateRequirements}</argLine>
